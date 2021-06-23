@@ -1,0 +1,202 @@
+/* Custom properties/variables  */
+
+:root {
+    --bg-white: #fafafa;
+    --main-white: #ffffff;
+    --main-black: rgba(0, 0, 0, 0.87);
+    --main-blue: #1A73E8;
+    --hover-blue: #2b7de9;
+    --main-gray: #5f6368;
+    --light-gray: #DFE1E5;
+    --shadow-white: 1px 1px 1px rgba(255, 255, 255, 0.8);
+    --shadow-black: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    --ff: Arial, sans-serif;
+}
+
+
+/* ===Alignment.css=== */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ :focus,
+ :active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 10px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background-color: var(--bg-white);
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
+
+.flex {
+    display: flex;
+}
+
+
+/* ===Alignment.css=== */
+
+.wrapper {
+    height: 100vh;
+    width: 100wh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+article {
+    max-width: 935px;
+    width: 100%;
+}
+
+.phones {
+    width: 454px;
+    height: 618px;
+    background-image: url(https://www.instagram.com/static/images/homepage/home-phones.png/43cc71bb1b43.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.slider-img {
+    position: relative;
+    /*   margin: 99px 0 0 151px; */
+    /*   instagram style */
+}
+
+.img {
+    position: absolute;
+    height: 427px;
+    width: 240px;
+    top: 99px;
+    left: 151px;
+    /*   top: 0;
+    left: 0; */
+    /*   instagram style */
+}
+
+
+/* FORM */
+
+.form-section {
+    width: 350px;
+}
+
+.f-row {
+    margin: 0 40px 6px;
+}
+
+.login-label-input {
+    display: block;
+    width: 100%;
+    height: 2rem;
+}
+
+.form-block {
+    background-color: var(--main-white);
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid var(--light-gray);
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+}
+
+h1 {
+    overflow: hidden;
+    text-indent: 110%;
+    white-space: nowrap;
+    background-repeat: no-repeat;
+    height: 51px;
+    width: 175px;
+    background-image: url(https://www.instagram.com/static/bundles/es6/sprite_core_2x_bcd90c1d4868.png/bcd90c1d4868.png);
+    background-size: 440px 411px;
+    background-position: 0 -129px;
+    margin: 22px auto 12px;
+    border: 0;
+}
