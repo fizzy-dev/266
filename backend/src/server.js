@@ -1,19 +1,24 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import connectDB from './config/connectDB';
-import initRoutes from './routes/api';
+import cors from 'cors'
+//
+// import initRoutes from './routes/api';
 
 import following from './models/following.model'
 import authRouter from './routes/auth'
 import postRouter from './routes/post'
 import followingRouter from './routes/following'
 
+connectDB();
 let app = express();
 //connect to mongodb
-connectDB();
 // app.use(express.json())
 // initRoutes(app);
 app.use(bodyParser.urlencoded({ extended: true }));
+//sua loi khi server chay port 9899 con client chay port 3000
+app.use(cors())
+
 
 app.use('/api/auth', authRouter);
 app.use('/api/posts', postRouter);

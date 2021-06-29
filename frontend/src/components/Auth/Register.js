@@ -4,45 +4,31 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 function Login(props) {
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [registerForm, setRegisterForm] = useState({
+        email: '',
+        username: '',
+        password: '',
+        confirmpassword: ''
+    })
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+
+    const handleRegisterFormChange = (event) => {
+        setRegisterForm({ ...registerForm, [event.target.name]: event.target.value })
     }
 
-    function handleUsernameChange(e) {
-        setUsername(e.target.value);
-    }
-
-    function handlePasswordChange(e) {
-        setPassword(e.target.value);
-    }
-
-    function handleConfirmPasswordChange(e) {
-        setConfirmPassword(e.target.value);
-    }
-
-    function handleSignupClick(e){
+    function handleSignupClick(e) {
         e.preventDefault();
         //ngawn reload
 
-        let data={
-            email:email,
-            username:username,
-            password:password,
-            confirmPassword:confirmPassword
-        }
-        console.log(data);
+        console.log(registerForm);
 
         //set cac gia tri ve rong
-        setEmail('');
-        setUsername('');
-        setConfirmPassword('');
-        setPassword('');
-
+        setRegisterForm({
+            email: '',
+            username: '',
+            password: '',
+            confirmpassword: ''
+        })
     }
 
     return (
@@ -64,20 +50,20 @@ function Login(props) {
                                     <div className="f-row login-block">
                                         <label className="login-label" htmlFor="form">
                                             <span className="login-label-span" />
-                                            <input className="login-label-input" type="text" placeholder="Your email" value={email} onChange={handleEmailChange} />
+                                            <input className="login-label-input" type="text" name="email" placeholder="Your email" value={registerForm.email} onChange={handleRegisterFormChange} />
                                         </label>
                                     </div>
                                     <div className="f-row login-block">
                                         <label className="login-label" htmlFor="form">
                                             <span className="login-label-span" />
-                                            <input className="login-label-input" type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
+                                            <input className="login-label-input" type="text" name="username" placeholder="Username" value={registerForm.username} onChange={handleRegisterFormChange} />
                                         </label>
                                     </div>
                                     <div className="f-row password-block">
                                         <div className="row-block">
                                             <label className="password-label" htmlFor="form">
                                                 <span className="password-label-span" />
-                                                <input className="password-label-span" type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+                                                <input className="password-label-span" type="password" name="password" placeholder="Password" value={registerForm.password} onChange={handleRegisterFormChange} />
                                             </label>
                                         </div>
                                     </div>
@@ -85,14 +71,14 @@ function Login(props) {
                                         <div className="row-block">
                                             <label className="password-label" htmlFor="form">
                                                 <span className="password-label-span" />
-                                                <input className="password-label-span" type="password" placeholder='Confirm password' value={confirmPassword} onChange={handleConfirmPasswordChange} />
+                                                <input className="password-label-span" type="password" name="confirmpassword" placeholder='Confirm password' value={registerForm.confirmpassword} onChange={handleRegisterFormChange} />
                                             </label>
                                         </div>
                                     </div>
                                     <div className="f-row btn-submit">
                                         <button type="submit">Sign up</button>
                                     </div>
-                                    <a className="fogotpas" href="#">Forgot password?</a>
+                                    {/* <a className="fogotpas" href="#">Forgot password?</a> */}
                                 </div>
                             </form>
                         </div>

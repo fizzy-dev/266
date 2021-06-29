@@ -1,19 +1,25 @@
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { useState } from 'react'
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import Auth from './views/Auth';
+import AuthContextProvider from './contexts/authContext';
+import Home from './components/App/Home'
+import ProtectedRoute from './components/routing/ProtectedRoute';
+
 
 function App() {
-  const [currentUser,setCurrentUser]= useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   return (
-    <Router>
-      <div className="App">
-        {/* <Route path="/" exact component={ }></Route> */}
-        <Route path="/login" component={Login}></Route>
-        <Route path="/signup" component={Register}></Route>
-      </div>
-
-    </Router>
+    <AuthContextProvider>
+      <Router>
+        <Switch>
+          <Route path="/login" render={props => <Auth authRoute="login"></Auth>}></Route>
+          <Route path="/register" render={props => <Auth authRoute="register"></Auth>}></Route>
+          <ProtectedRoute path='/feeds' render={props => (<Home></Home>)}></ProtectedRoute>
+        </Switch>
+      </Router>
+    </AuthContextProvider>
   );
 }
 

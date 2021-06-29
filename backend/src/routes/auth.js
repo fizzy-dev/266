@@ -2,9 +2,30 @@ import express from 'express';
 import User from './../models/user.model'
 const router = express.Router();
 //hash password library
-import argon2 from 'argon2'
+import argon2, { verify } from 'argon2'
 //webtoken lib
 import jwt from 'jsonwebtoken'
+import verifyToken from './../middleware/auth'
+
+/**
+ * @route GET api/auth/ 
+ * @desc check if user loggedin
+ * @access Public
+ */
+
+router.get('/', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password')
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'user not found' })
+        }
+        res.json({ success: true, user: user })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Internal server error" })
+    }
+})
+
 
 /**
  * @route POST api/auth/register 
@@ -54,7 +75,7 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     //simple validation
     if (!username || !password) {
-        return res.status(400).json({ success: false, message: "Missing email/username/password" })
+        return res.status(400).json({ success: false, message: "Missing username/password" })
     }
 
     try {

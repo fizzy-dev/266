@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './../../styles/login.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
- 
+import { Link, useHistory } from 'react-router-dom';
+
+import { AuthContext } from '../../contexts/authContext';
+
 
 function Login(props) {
+    //LocalState
+    const [loginForm, setLoginForm] = useState({
+        username: '',
+        password: ''
+    })
+    //context
+    const { loginUser } = useContext(AuthContext);
+
+    // const history = useHistory();
+
+    const handleLoginFormChange = (event) => {
+        setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
+    }
+
+    const handleSubmitLoginForm = async (e) => {
+        // chan reload trang khi submit
+        e.preventDefault()
+        const loginData = await loginUser(loginForm)
+        if (loginData.success) {
+            // history.push('/feeds') //redirect to home
+        } else {
+
+        }
+
+        setLoginForm({
+            username: '',
+            password: ''
+        })
+    }
+
     return (
         <div className="wrapper flex">
             {/*     MAIN */}
@@ -18,19 +50,19 @@ function Login(props) {
                     <div className="form-section">
                         <div className="form-block header-logo">
                             <h1>Instagram</h1>
-                            <form className="form" id="form" action>
+                            <form className="form" id="form" onSubmit={handleSubmitLoginForm}>
                                 <div className="form-div">
                                     <div className="f-row login-block">
                                         <label className="login-label" htmlFor="form">
                                             <span className="login-label-span" />
-                                            <input className="login-label-input" type="text" defaultValue />
+                                            <input className="login-label-input" type="text" name="username" value={loginForm.username} onChange={handleLoginFormChange} placeholder="Username" />
                                         </label>
                                     </div>
                                     <div className="f-row password-block">
                                         <div className="row-block">
                                             <label className="password-label" htmlFor="form">
                                                 <span className="password-label-span" />
-                                                <input className="password-label-span" type="password" defaultValue />
+                                                <input className="password-label-span" type="password" name='password' value={loginForm.password} onChange={handleLoginFormChange} placeholder="Password" />
                                             </label>
                                         </div>
                                     </div>
@@ -48,7 +80,9 @@ function Login(props) {
                                             <span className="enter">Log In with Facebook</span>
                                         </button>
                                     </div> */}
-                                    <a className="fogotpas" href="#">Forgot password?</a>
+
+
+                                    <a className="f-row fogotpas" href="#">Forgot password?</a>
                                 </div>
                             </form>
                         </div>
@@ -56,7 +90,7 @@ function Login(props) {
                             <div className="signup__block">
                                 <p className="signup__span">Don't have an account?
                                     {/* <a href className="signup__link">Sign Up</a> */}
-                                    <Link to="/signup">Sign up</Link>
+                                    <Link to="/register">Sign up</Link>
                                 </p>
                             </div>
                         </div>
